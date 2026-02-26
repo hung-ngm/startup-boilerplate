@@ -1,0 +1,52 @@
+---
+title: Setting Up Authentication with Clerk
+description: A comprehensive guide to implementing authentication in your SaaS app
+date: 2024-02-02
+tags: [authentication, clerk, security]
+---
+
+# Setting Up Authentication with Clerk
+
+Authentication is critical for any SaaS application. This guide shows you how to configure Clerk for secure user management.
+
+## Why Clerk?
+
+Clerk provides:
+
+- **Social logins** - Google, GitHub, and more
+- **Multi-factor authentication** - Enhanced security out of the box
+- **User management** - Beautiful pre-built UI components
+- **Organizations** - Team and workspace support
+
+## Configuration
+
+### 1. Create a Clerk Application
+
+Visit [clerk.com](https://clerk.com) and create a new application.
+
+### 2. Add Environment Variables
+
+```env
+CLERK_SECRET_KEY=sk_test_xxx
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxx
+```
+
+### 3. Protect Routes
+
+Our middleware automatically protects all `/dashboard/*` routes:
+
+```typescript
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (isProtectedRoute(req)) {
+    await auth.protect();
+  }
+});
+```
+
+## Customization
+
+You can customize the appearance of Clerk components to match your brand. Check out the [Clerk documentation](https://clerk.com/docs) for more details.

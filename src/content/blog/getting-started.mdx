@@ -1,0 +1,58 @@
+---
+title: Getting Started with StartupKit
+description: Learn how to set up and deploy your SaaS application in minutes
+date: 2024-02-01
+tags: [guide, setup, getting-started]
+---
+
+# Getting Started with StartupKit
+
+Welcome to StartupKit! This guide will walk you through setting up your development environment and deploying your first SaaS application.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js 18+ installed
+- A GitHub account
+- Accounts for the services you want to use (Clerk, Supabase, Stripe, etc.)
+
+## Quick Start
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/yourusername/startup-boilerplate.git
+cd startup-boilerplate
+```
+
+2. **Install dependencies**
+
+```bash
+pnpm install
+```
+
+3. **Set up environment variables**
+
+Copy `.env.example` to `.env.local` and fill in your API keys:
+
+```bash
+cp .env.example .env.local
+```
+
+4. **Run the development server**
+
+```bash
+pnpm dev
+```
+
+Visit `http://localhost:3000` to see your application running!
+
+## Next Steps
+
+- Configure your authentication with Clerk
+- Set up your database with Supabase
+- Add your payment providers
+- Deploy to Vercel
+
+Check out our other guides for detailed setup instructions for each service.

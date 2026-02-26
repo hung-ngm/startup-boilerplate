@@ -1,0 +1,57 @@
+---
+title: Building an AI Chat with RAG
+description: How to implement retrieval-augmented generation with Pinecone and OpenAI
+date: 2024-02-03
+tags: [ai, rag, pinecone, openai]
+---
+
+# Building an AI Chat with RAG
+
+Retrieval-Augmented Generation (RAG) combines the power of large language models with your own data to provide accurate, contextual responses.
+
+## Architecture
+
+Our AI chat implementation uses:
+
+1. **Pinecone** - Vector database for storing embeddings
+2. **OpenAI** - For embeddings and chat completions
+3. **Vercel AI SDK** - Streamlined AI integration
+
+## How It Works
+
+### 1. Embed User Query
+
+```typescript
+const embeddingResponse = await openai.embeddings.create({
+  model: "text-embedding-3-small",
+  input: userMessage,
+});
+```
+
+### 2. Query Vector Database
+
+```typescript
+const queryResponse = await pineconeIndex.query({
+  vector: embedding,
+  topK: 3,
+  includeMetadata: true,
+});
+```
+
+### 3. Generate Response
+
+The retrieved context is injected into the system message, giving the AI relevant information to answer the user's question.
+
+## Benefits
+
+- **Accurate responses** based on your data
+- **Reduced hallucinations** with grounded context
+- **Real-time updates** as you add new content
+
+## Next Steps
+
+- Index your documentation
+- Fine-tune retrieval parameters
+- Add conversation memory
+
+RAG is a powerful pattern for building intelligent applications that combine AI capabilities with domain-specific knowledge.
